@@ -1,0 +1,25 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+ol, ul {
+    padding-left: 30px;
+}
+
+.demo-unit {
+    display: flex;
+    flex-direction: row;
+}
+
+.demo-canvas {
+    border: 1px solid black;
+
+}
+
+.demo-code {
+    margin-left: 1em;
+    white-space: pre-line;
+
+}
+
