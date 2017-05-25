@@ -7,8 +7,20 @@ import './index.css';
 
 import ConstructCubic from "./sections/construction";
 
+class Section extends React.Component {
+    render() {
+        return (
+            <div className="demo-section">
+                <h1>{this.props.title}</h1>
+                {this.props.children}
+            </div>
+        )
+    }
+}
 
 ReactDOM.render(
-    <ConstructCubic/>,
+    <Section title="Construction">
+        <ConstructCubic/>
+    </Section>,
     document.getElementById('root')
 );
