@@ -5,10 +5,10 @@
 import React from 'react';
 import * as dp from "drawpoint";
 
-import {drawControlPoints} from "./../draw";
-import {point, interactionFactory} from "./../utils";
+import {drawControlPoints} from "../../draw";
+import {point, interactionFactory} from "../../utils";
 
-export default class CubicConstruction extends React.Component {
+export class CubicConstruction extends React.Component {
     constructor(props) {
         super(props);
 

@@ -5,7 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import ConstructCubic from "./sections/construction";
+import {CubicConstruction} from "./sections/construction";
+
 
 class Section extends React.Component {
     render() {
@@ -20,7 +21,7 @@ class Section extends React.Component {
 
 ReactDOM.render(
     <Section title="Construction">
-        <ConstructCubic/>
+        <CubicConstruction/>
     </Section>,
     document.getElementById('root')
 );
