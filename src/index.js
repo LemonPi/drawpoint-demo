@@ -4,24 +4,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Markdown from "./Markdown";
+import Section from "./Section";
 
 import {CubicConstruction} from "./sections/construction";
+import constructionReadme from './sections/construction/README.md';
 
-
-class Section extends React.Component {
-    render() {
-        return (
-            <div className="demo-section">
-                <h1>{this.props.title}</h1>
-                {this.props.children}
-            </div>
-        )
-    }
-}
 
 ReactDOM.render(
     <Section title="Construction">
         <CubicConstruction/>
+        <Markdown path={constructionReadme}/>
     </Section>,
     document.getElementById('root')
 );
