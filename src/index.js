@@ -14,15 +14,26 @@ import {
 } from "./sections/construction";
 import constructionReadme from './sections/construction/README.md';
 
+import {CurveChaining} from "./sections/chaining";
+import chainingReadme from './sections/chaining/README.md';
+
 
 ReactDOM.render(
-    <Section title="Construction">
-        <div>
-            <LinearConstruction/>
-            <QuadraticConstruction/>
-            <CubicConstruction/>
-        </div>
-        <Markdown path={constructionReadme}/>
-    </Section>,
+    <div>
+        <Section>
+            <div>
+                <LinearConstruction/>
+                <QuadraticConstruction/>
+                <CubicConstruction/>
+            </div>
+            <Markdown path={constructionReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <CurveChaining/>
+            </div>
+            <Markdown path={chainingReadme}/>
+        </Section>
+    </div>,
     document.getElementById('root')
 );
