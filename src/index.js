@@ -17,6 +17,8 @@ import constructionReadme from './sections/construction/README.md';
 import {CurveChaining} from "./sections/chaining";
 import chainingReadme from './sections/chaining/README.md';
 
+import {CurveClosing} from "./sections/closing";
+import closingReadme from './sections/closing/README.md';
 
 ReactDOM.render(
     <div>
@@ -33,6 +35,12 @@ ReactDOM.render(
                 <CurveChaining/>
             </div>
             <Markdown path={chainingReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <CurveClosing/>
+            </div>
+            <Markdown path={closingReadme}/>
         </Section>
     </div>,
     document.getElementById('root')
