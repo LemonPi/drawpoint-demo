@@ -20,10 +20,11 @@ export function getMousePoint(e) {
  * Creates handlers for a canvas for moving certain points, and is responsible for updating
  * the component's state. Requires a canvas ref to an HTML canvas to exist.
  * @param component
+ * @param canvas A reference to the DOM canvas
  * @param pointNames A list of keys into the component's state that should return points
  * @returns {{handleMouseDown: (function(*=)), handleMouseUp: (function()), handleMouseMove: (function(*=))}}
  */
-export function interactionFactory(component, pointNames) {
+export function interactionFactory(component, canvas, pointNames) {
     let mousePoint = null;
     let movingPoint = null;
     let moving = false;
@@ -45,7 +46,7 @@ export function interactionFactory(component, pointNames) {
                 return;
             }
 
-            component.refs.canvas.style.cursor = "default";
+            canvas.style.cursor = "default";
 
             moving = false;
             movingPoint = null;
@@ -61,7 +62,7 @@ export function interactionFactory(component, pointNames) {
                 }
             });
 
-            component.refs.canvas.style.cursor = movingNearPoint ? "pointer" : "default";
+            canvas.style.cursor = movingNearPoint ? "pointer" : "default";
 
             if (moving === false) {
                 return;
@@ -96,7 +97,7 @@ export function createBasicDemo(name, {state, points, draw, renderCode}) {
         constructor(props) {
             super(props);
             this.state = state;
-            this.handler = interactionFactory(this, points);
+            this.handler = {};
 
             // subsequent initialization calls in order
             // componentWillMount
@@ -108,6 +109,8 @@ export function createBasicDemo(name, {state, points, draw, renderCode}) {
             // we can only access the DOM here (the canvas)
             const ctx = this.refs.canvas.getContext('2d');
             draw(ctx, this.state);
+            this.handler = interactionFactory(this, this.refs.canvas, points);
+            this.forceUpdate();
         }
 
         componentDidUpdate() {
