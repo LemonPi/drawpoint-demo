@@ -13,19 +13,18 @@ export default class Markdown extends React.Component {
     componentWillMount() {
         fetch(this.props.path)
         .then(response => {
-            console.log(response);
             return response.text()
         })
         .then(text => {
             const markdown = marked(text, {sanitize: true});
-            console.log(markdown);
             this.setState({markdown});
         });
     }
 
     render() {
         return (
-            <article dangerouslySetInnerHTML={{__html: this.state.markdown}}></article>
+            <article className="markdown"
+                     dangerouslySetInnerHTML={{__html: this.state.markdown}}></article>
         )
     }
 }

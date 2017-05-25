@@ -1,3 +1,4 @@
+## Construction
 Curves are defined by the start (p1) and end (p2) draw points.
 The control points (cp1, cp2) attached to p2 determine the curve
 degree (linear, quadratic, or cubic). 
