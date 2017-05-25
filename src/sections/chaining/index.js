@@ -4,7 +4,7 @@
 import React from 'react';
 import * as dp from "drawpoint";
 
-import {getColour, drawControlPoints} from "../../draw";
+import {drawControlPoints} from "../../draw";
 import {point, createBasicDemo} from "../../utils";
 
 export const CurveChaining = createBasicDemo("CurveChaining", {
@@ -32,10 +32,7 @@ export const CurveChaining = createBasicDemo("CurveChaining", {
 
         // draw the control points
         drawControlPoints(ctx, p1, pp2);
-        ctx.save();
-        ctx.strokeStyle = getColour(0.5);
         drawControlPoints(ctx, pp2, pp3);
-        ctx.restore();
     },
     renderCode({p1, p2, cp1, cp2, p3, cp3}) {
         return (
