@@ -7,13 +7,18 @@ import './index.css';
 import Markdown from "./Markdown";
 import Section from "./Section";
 
-import {CubicConstruction, QuadraticConstruction} from "./sections/construction";
+import {
+    CubicConstruction,
+    QuadraticConstruction,
+    LinearConstruction
+} from "./sections/construction";
 import constructionReadme from './sections/construction/README.md';
 
 
 ReactDOM.render(
     <Section title="Construction">
         <div>
+            <LinearConstruction/>
             <QuadraticConstruction/>
             <CubicConstruction/>
         </div>

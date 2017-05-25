@@ -28,6 +28,7 @@ ol, ul {
 .demo-code {
     margin-left: 1em;
     color: dimgrey;
+    min-width: 300px;
 }
 
 .markdown {
@@ -35,4 +36,8 @@ ol, ul {
     max-width: 800px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
+}
+
+.markdown > p {
+    line-height: 1.4em;
 }
