@@ -2,6 +2,7 @@
  * Created by Johnson on 2017-05-25.
  */
 import * as dp from "drawpoint";
+import chroma from "chroma-js";
 
 export function drawPoint(ctx, p, offset) {
     offset = offset || {
@@ -15,7 +16,20 @@ export function drawPoint(ctx, p, offset) {
     ctx.arc(p.x + ox, p.y + oy, 3, 0, 2 * Math.PI);
     ctx.stroke();
 }
-const controlPointLineStyle = "#999";
+
+const palette = chroma.scale(['#fafa6e', '#2A4858']).mode('lch')
+
+export function getColour(scale) {
+    if (typeof scale === "undefined") {
+        scale = Math.random();
+    }
+    return palette(scale);
+}
+
+export function getControlPointLineStyle(ctx) {
+    return chroma.mix("white", ctx.strokeStyle, 0.3);
+}
+
 export function drawControlPoints(ctx, p1, p2) {
     // draw control points
     drawPoint(ctx, p1);
@@ -26,7 +40,7 @@ export function drawControlPoints(ctx, p1, p2) {
         quadratic(p1, cp, p2) {
             drawPoint(ctx, cp);
             ctx.save();
-            ctx.strokeStyle = controlPointLineStyle;
+            ctx.strokeStyle = getControlPointLineStyle(ctx);
             ctx.beginPath();
             dp.drawPoints(ctx, p1, cp, p2);
             ctx.stroke();
@@ -36,7 +50,7 @@ export function drawControlPoints(ctx, p1, p2) {
             drawPoint(ctx, cp1);
             drawPoint(ctx, cp2);
             ctx.save();
-            ctx.strokeStyle = controlPointLineStyle;
+            ctx.strokeStyle = getControlPointLineStyle(ctx);
             ctx.beginPath();
             dp.drawPoints(ctx, p1, cp1, dp.breakPoint, p2, cp2);
             ctx.stroke();

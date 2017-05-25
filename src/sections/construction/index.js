@@ -34,8 +34,8 @@ export const CubicConstruction = createBasicDemo("CubicConstruction", {
             <pre className="demo-code">
                 const p1 = {point(p1)};{'\n'}
                 const p2 = {point(p2)};{'\n'}
-                p2.cp1 = {point(cp1)};{'\n'}
-                p2.cp2 = {point(cp2)};{'\n'}
+                p2.cp1   = {point(cp1)};{'\n'}
+                p2.cp2   = {point(cp2)};{'\n'}
                 {'\n'}
                 ctx.beginPath();{'\n'}
                 dp.drawPoints(ctx, p1, p2);{'\n'}
@@ -48,8 +48,8 @@ export const CubicConstruction = createBasicDemo("CubicConstruction", {
 export const QuadraticConstruction = createBasicDemo("QuadraticConstruction", {
     state : {
         p1 : dp.point(20, 20),
-        p2 : dp.point(170, 120),
-        cp1: dp.point(50, 50),
+        p2 : dp.point(173, 94),
+        cp1: dp.point(50, 140),
     },
     points: ["p1", "p2", "cp1"],
     draw(ctx, {p1, p2, cp1}) {
@@ -69,7 +69,7 @@ export const QuadraticConstruction = createBasicDemo("QuadraticConstruction", {
             <pre className="demo-code">
                 const p1 = {point(p1)};{'\n'}
                 const p2 = {point(p2)};{'\n'}
-                p2.cp1 = {point(cp1)};{'\n'}
+                p2.cp1   = {point(cp1)};{'\n'}
                 {'\n'}
                 ctx.beginPath();{'\n'}
                 dp.drawPoints(ctx, p1, p2);{'\n'}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chroma-js": "^1.3.3",
     "drawpoint": "^1.0.1",
     "marked": "^0.3.6",
     "react": "^15.5.4",

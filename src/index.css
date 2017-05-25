@@ -8,8 +8,8 @@ ol, ul {
 }
 
 .demo-section {
-    border-top: 2px solid crimson;
-    padding-top: 5px;
+    border-top: 20px solid crimson;
+    padding: 5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
