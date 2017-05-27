@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import * as dp from "drawpoint";
+import getDisplayName from 'react-display-name';
 
 export function point(p) {
     return `dp.point(${dp.roundToDec(p.x)}, ${dp.roundToDec(p.y)})`;
@@ -15,6 +16,7 @@ export function getMousePoint(e) {
     return dp.point(e.clientX - rect.left, e.clientY - rect.top);
 }
 
+export const placeholder = <div></div>;
 
 /**
  * Creates handlers for a canvas for moving certain points, and is responsible for updating
@@ -24,7 +26,7 @@ export function getMousePoint(e) {
  * @param pointNames A list of keys into the component's state that should return points
  * @returns {{handleMouseDown: (function(*=)), handleMouseUp: (function()), handleMouseMove: (function(*=))}}
  */
-export function interactionFactory(component, canvas, pointNames) {
+function interactionFactory(component, canvas, pointNames) {
     let mousePoint = null;
     let movingPoint = null;
     let moving = false;
@@ -82,17 +84,16 @@ export function interactionFactory(component, canvas, pointNames) {
 }
 
 /**
- * Component factory for basic demos. Given the initial state (includes all the points),
- * list of points to add interactivity to, canvas drawing method, and code representation method,
- * create a boiler-plated component.
- * @param name Name of the component to create
+ * Higher order component for producing demos with an interactive canvas and area
+ * for displaying the code to produce the demo (not strictly coupled).
+ * @param WrappedComponent Base component to be given point interactivity and a canvas
  * @param state Initial state
  * @param points List of string names (state keys) that should become interactable points
  * @param draw Method for drawing state to canvas
  * @param renderCode Method for rendering state to code
  * @returns {BasicDemo} Component
  */
-export function createBasicDemo(name, {state, points, draw, renderCode}) {
+export function withInteractivity(WrappedComponent, {state, points, draw, renderCode}) {
     class BasicDemo extends React.Component {
         constructor(props) {
             super(props);
@@ -120,19 +121,22 @@ export function createBasicDemo(name, {state, points, draw, renderCode}) {
         }
 
         render() {
-            // no DOM operations (e.g. drawing on canvas) should take place here
             return (
-                <div className="demo-unit">
-                    <canvas width="200" height="200" ref="canvas"
-                            onMouseDown={this.handler.handleMouseDown}
-                            onMouseUp={this.handler.handleMouseUp}
-                            onMouseMove={this.handler.handleMouseMove}
-                            className="demo-canvas"></canvas>
-                    {renderCode(this.state)}
+                <div>
+                    <div className="demo-unit">
+                        <canvas width="200" height="200" ref="canvas"
+                                onMouseDown={this.handler.handleMouseDown}
+                                onMouseUp={this.handler.handleMouseUp}
+                                onMouseMove={this.handler.handleMouseMove}
+                                className="demo-canvas"></canvas>
+                        {renderCode(this.state)}
+                    </div>
+                    <WrappedComponent {...this.props}/>
                 </div>
             );
         }
     }
-    BasicDemo.displayName = name;
+
+    BasicDemo.displayName = `withInteractivity(${getDisplayName(WrappedComponent)})`;
     return BasicDemo;
 }

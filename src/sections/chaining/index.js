@@ -5,9 +5,11 @@ import React from 'react';
 import * as dp from "drawpoint";
 
 import {drawControlPoints} from "../../draw";
-import {point, createBasicDemo} from "../../utils";
+import {point, withInteractivity, placeholder} from "../../utils";
 
-export const CurveChaining = createBasicDemo("CurveChaining", {
+export const CurveChaining = withInteractivity(function CurveChaining() {
+    return placeholder;
+}, {
     state : {
         p1 : dp.point(20, 20),
         p2 : dp.point(41, 110),

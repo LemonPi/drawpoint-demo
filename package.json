@@ -6,6 +6,7 @@
     "drawpoint": "^1.0.1",
     "marked": "^0.3.6",
     "react": "^15.5.4",
+    "react-display-name": "^0.2.0",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {

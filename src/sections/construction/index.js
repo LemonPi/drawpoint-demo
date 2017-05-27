@@ -5,10 +5,12 @@ import React from 'react';
 import * as dp from "drawpoint";
 
 import {drawControlPoints} from "../../draw";
-import {point, createBasicDemo} from "../../utils";
+import {point, withInteractivity, placeholder} from "../../utils";
 
 
-export const CubicConstruction = createBasicDemo("CubicConstruction", {
+export const CubicConstruction = withInteractivity(function CubicConstruction() {
+    return placeholder;
+}, {
     state : {
         p1 : dp.point(20, 20),
         p2 : dp.point(170, 120),
@@ -45,7 +47,9 @@ export const CubicConstruction = createBasicDemo("CubicConstruction", {
     }
 });
 
-export const QuadraticConstruction = createBasicDemo("QuadraticConstruction", {
+export const QuadraticConstruction = withInteractivity(function QuadraticConstruction() {
+    return placeholder;
+}, {
     state : {
         p1 : dp.point(20, 20),
         p2 : dp.point(173, 94),
@@ -79,7 +83,9 @@ export const QuadraticConstruction = createBasicDemo("QuadraticConstruction", {
     }
 });
 
-export const LinearConstruction = createBasicDemo("LinearConstruction", {
+export const LinearConstruction = withInteractivity(function LinearConstruction() {
+    return placeholder;
+}, {
     state : {
         p1: dp.point(20, 20),
         p2: dp.point(170, 120),
