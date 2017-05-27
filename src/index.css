@@ -1,6 +1,8 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
+    background: #f9f9f9;
+    color: #484848;
 }
 
 ol, ul {
@@ -8,7 +10,6 @@ ol, ul {
 }
 
 .demo-section {
-    border-top: 20px solid crimson;
     padding: 5px;
     display: flex;
     flex-direction: row;
@@ -24,8 +25,7 @@ ol, ul {
 .demo-canvas {
     border: 1px solid black;
     /*prevent stretching to fit container*/
-    height: 100%;
-    width: 100%;
+    align-self: center;
 }
 
 .demo-code {
