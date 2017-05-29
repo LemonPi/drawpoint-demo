@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import * as dp from "drawpoint";
-import getDisplayName from 'react-display-name';
 
 export function point(p) {
     return `dp.point(${dp.roundToDec(p.x)}, ${dp.roundToDec(p.y)})`;
@@ -16,17 +15,15 @@ export function getMousePoint(e) {
     return dp.point(e.clientX - rect.left, e.clientY - rect.top);
 }
 
-export const placeholder = <div></div>;
-
 /**
- * Creates handlers for a canvas for moving certain points, and is responsible for updating
- * the component's state. Requires a canvas ref to an HTML canvas to exist.
- * @param component
+ * Create handlers for mouse moving over a canvas.
+ * @param getPoints Function that returns an object holding points that can be interacted with
  * @param canvas A reference to the DOM canvas
- * @param pointNames A list of keys into the component's state that should return points
+ * @param handlePointMove  Function to call whenever a point moved, passing
+ *  {movedPointKey: point from getPoints that moved, movedPoint: that point after moving}
  * @returns {{handleMouseDown: (function(*=)), handleMouseUp: (function()), handleMouseMove: (function(*=))}}
  */
-function interactionFactory(component, canvas, pointNames) {
+function interactiveFactory(getPoints, canvas, handlePointMove) {
     let mousePoint = null;
     let movingPoint = null;
     let moving = false;
@@ -34,9 +31,10 @@ function interactionFactory(component, canvas, pointNames) {
     return {
         handleMouseDown (e)  {
             mousePoint = getMousePoint(e);
+            const points = getPoints();
 
-            pointNames.forEach((p) => {
-                if (dp.norm(dp.diff(component.state[p], mousePoint)) < 10) {
+            Object.keys(points).forEach((p) => {
+                if (dp.norm(dp.diff(points[p], mousePoint)) < 10) {
                     moving = true;
                     movingPoint = p;
                 }
@@ -56,10 +54,11 @@ function interactionFactory(component, canvas, pointNames) {
 
         handleMouseMove  (e)  {
             const newMousePoint = getMousePoint(e);
+            const points = getPoints();
 
             let movingNearPoint = false;
-            pointNames.forEach((p) => {
-                if (dp.norm(dp.diff(component.state[p], newMousePoint)) < 10) {
+            Object.keys(points).forEach((p) => {
+                if (dp.norm(dp.diff(points[p], newMousePoint)) < 10) {
                     movingNearPoint = true;
                 }
             });
@@ -71,72 +70,77 @@ function interactionFactory(component, canvas, pointNames) {
             }
 
             // we want to capture relative movement to avoid instantaneous teleport
-            const movedPoint = dp.clone(component.state[movingPoint]);
+            const movedPoint = dp.clone(points[movingPoint]);
             const movedBy = dp.diff(mousePoint, newMousePoint);
             movedPoint.x += movedBy.x;
             movedPoint.y += movedBy.y;
 
             mousePoint = newMousePoint;
-            component.setState({[movingPoint]: movedPoint});
+            handlePointMove({
+                movedPoint,
+                movedPointKey: movingPoint
+            });
         },
 
     };
 }
 
+
 /**
- * Higher order component for producing demos with an interactive canvas and area
- * for displaying the code to produce the demo (not strictly coupled).
- * @param WrappedComponent Base component to be given point interactivity and a canvas
- * @param state Initial state
- * @param points List of string names (state keys) that should become interactable points
- * @param draw Method for drawing state to canvas
- * @param renderCode Method for rendering state to code
- * @returns {BasicDemo} Component
+ * Thin canvas component that holds no state, instead acting as an interaction interface for
+ * manipulating passed in points through callbacks.
+ *
+ * props should have these following callbacks:
+ * getPoints() - returns an object holding points to allow interaction with
+ * handlePointMove(e) - called whenever a point gets moved
+ *  e.movedPointKey is the key corresponding from the object getPoints() returned that moved
+ *  e.movedPoint is the new point of that key
+ * handleCanvasUpdate(ctx) - called whenever the canvas should be updated (entire canvas cleared
+ * each time). Caller should draw on this fresh canvas.
  */
-export function withInteractivity(WrappedComponent, {state, points, draw, renderCode}) {
-    class BasicDemo extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = state;
-            this.handler = {};
+export class InteractiveCanvas extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handler = {};
+        this.width = props.width || 200;
+        this.height = props.height || 200;
 
-            // subsequent initialization calls in order
-            // componentWillMount
-            // render (must be pure)
-            // componentDidMount
-        }
-
-        componentDidMount() {
-            // we can only access the DOM here (the canvas)
-            const ctx = this.refs.canvas.getContext('2d');
-            draw(ctx, this.state);
-            this.handler = interactionFactory(this, this.refs.canvas, points);
-            this.forceUpdate();
-        }
-
-        componentDidUpdate() {
-            const ctx = this.refs.canvas.getContext('2d');
-            ctx.clearRect(0, 0, 200, 200);
-            draw(ctx, this.state);
-        }
-
-        render() {
-            return (
-                <div>
-                    <div className="demo-unit">
-                        <canvas width="200" height="200" ref="canvas"
-                                onMouseDown={this.handler.handleMouseDown}
-                                onMouseUp={this.handler.handleMouseUp}
-                                onMouseMove={this.handler.handleMouseMove}
-                                className="demo-canvas"></canvas>
-                        {renderCode(this.state)}
-                    </div>
-                    <WrappedComponent {...this.props}/>
-                </div>
-            );
-        }
+        // subsequent initialization calls in order
+        // componentWillMount
+        // render (must be pure)
+        // componentDidMount
     }
 
-    BasicDemo.displayName = `withInteractivity(${getDisplayName(WrappedComponent)})`;
-    return BasicDemo;
+    handlePointMove = (e) => {
+        // since state is held by parent, canvas doesn't know anything
+        this.props.handlePointMove(e);
+        // redraw each time point moves
+        this.draw();
+    };
+
+    // expose as separate function so parents have the option of force calling it via refs
+    draw() {
+        const ctx = this.refs.canvas.getContext('2d');
+        ctx.clearRect(0, 0, this.width, this.height);
+        this.props.handleCanvasUpdate(ctx);
+    }
+
+    componentDidMount() {
+        // we can only access the DOM here (the canvas)
+        this.handler =
+            interactiveFactory(this.props.getPoints, this.refs.canvas, this.handlePointMove);
+        this.forceUpdate();
+        // initial draw
+        this.draw();
+    }
+
+    render() {
+        return (
+            <canvas width={this.width} height={this.height} ref="canvas"
+                    onMouseDown={this.handler.handleMouseDown}
+                    onMouseUp={this.handler.handleMouseUp}
+                    onMouseMove={this.handler.handleMouseMove}
+                    className="demo-canvas"></canvas>
+        );
+    }
 }

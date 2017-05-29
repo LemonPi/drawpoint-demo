@@ -5,21 +5,37 @@ import React from 'react';
 import * as dp from "drawpoint";
 
 import {drawControlPoints} from "../../draw";
-import {point, withInteractivity, placeholder} from "../../utils";
+import {point, InteractiveCanvas} from "../../utils";
 
-export const CurveChaining = withInteractivity(function CurveChaining() {
-    return placeholder;
-}, {
-    state : {
-        p1 : dp.point(20, 20),
-        p2 : dp.point(41, 110),
-        cp1: dp.point(50, 50),
-        cp2: dp.point(90, 40),
-        p3 : dp.point(190, 100),
-        cp3: dp.point(65, 175),
-    },
-    points: ["p1", "p2", "cp1", "cp2", "p3", "cp3"],
-    draw(ctx, {p1, p2, cp1, cp2, p3, cp3}) {
+export class CurveChaining extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            points: {
+                p1 : dp.point(20, 20),
+                p2 : dp.point(41, 110),
+                cp1: dp.point(50, 50),
+                cp2: dp.point(90, 40),
+                p3 : dp.point(190, 100),
+                cp3: dp.point(65, 175),
+            },
+        };
+        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
+                                         handleCanvasUpdate={this.handleCanvasUpdate}
+                                         handlePointMove={this.handlePointMove}/>;
+    }
+
+    getPoints = () => {
+        return this.state.points;
+    };
+
+    handlePointMove = (e) => {
+        const points = this.state.points;
+        this.setState(Object.assign(points, {[e.movedPointKey]: e.movedPoint}));
+    };
+
+    handleCanvasUpdate = (ctx) => {
+        const {p1, p2, cp1, cp2, p3, cp3} = this.state.points;
         // attach the control points
         const pp2 = dp.clone(p2);
         pp2.cp1 = cp1;
@@ -35,7 +51,9 @@ export const CurveChaining = withInteractivity(function CurveChaining() {
         // draw the control points
         drawControlPoints(ctx, p1, pp2);
         drawControlPoints(ctx, pp2, pp3);
-    },
+    };
+
+
     renderCode({p1, p2, cp1, cp2, p3, cp3}) {
         return (
             <pre className="demo-code">
@@ -52,5 +70,16 @@ export const CurveChaining = withInteractivity(function CurveChaining() {
             </pre>
         )
     }
-});
+
+    render() {
+        return (
+            <div>
+                <div className="demo-unit">
+                    {this.canvas}
+                    {this.renderCode(this.state.points)}
+                </div>
+            </div>
+        );
+    }
+}
 

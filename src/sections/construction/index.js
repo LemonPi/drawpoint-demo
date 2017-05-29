@@ -5,20 +5,36 @@ import React from 'react';
 import * as dp from "drawpoint";
 
 import {drawControlPoints} from "../../draw";
-import {point, withInteractivity, placeholder} from "../../utils";
+import {point, InteractiveCanvas} from "../../utils";
 
 
-export const CubicConstruction = withInteractivity(function CubicConstruction() {
-    return placeholder;
-}, {
-    state : {
-        p1 : dp.point(20, 20),
-        p2 : dp.point(170, 120),
-        cp1: dp.point(50, 50),
-        cp2: dp.point(90, 40),
-    },
-    points: ["p1", "p2", "cp1", "cp2"],
-    draw(ctx, {p1, p2, cp1, cp2}) {
+export class CubicConstruction extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            points: {
+                p1 : dp.point(20, 20),
+                p2 : dp.point(170, 120),
+                cp1: dp.point(50, 50),
+                cp2: dp.point(90, 40),
+            },
+        };
+        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
+                                         handleCanvasUpdate={this.handleCanvasUpdate}
+                                         handlePointMove={this.handlePointMove}/>;
+    }
+
+    getPoints = () => {
+        return this.state.points;
+    };
+
+    handlePointMove = (e) => {
+        const points = this.state.points;
+        this.setState(Object.assign(points, {[e.movedPointKey]: e.movedPoint}));
+    };
+
+    handleCanvasUpdate = (ctx) => {
+        const {p1, p2, cp1, cp2} = this.state.points;
         // attach the control points
         const pp2 = dp.clone(p2);
         pp2.cp1 = cp1;
@@ -30,7 +46,8 @@ export const CubicConstruction = withInteractivity(function CubicConstruction() 
 
         // draw the control points
         drawControlPoints(ctx, p1, pp2);
-    },
+    };
+
     renderCode({p1, p2, cp1, cp2}) {
         return (
             <pre className="demo-code">
@@ -44,19 +61,47 @@ export const CubicConstruction = withInteractivity(function CubicConstruction() 
                 ctx.stroke();{'\n'}
             </pre>
         )
-    }
-});
+    };
 
-export const QuadraticConstruction = withInteractivity(function QuadraticConstruction() {
-    return placeholder;
-}, {
-    state : {
-        p1 : dp.point(20, 20),
-        p2 : dp.point(173, 94),
-        cp1: dp.point(50, 140),
-    },
-    points: ["p1", "p2", "cp1"],
-    draw(ctx, {p1, p2, cp1}) {
+    render() {
+        return (
+            <div>
+                <div className="demo-unit">
+                    {this.canvas}
+                    {this.renderCode(this.state.points)}
+                </div>
+            </div>
+        );
+    }
+}
+
+
+export class QuadraticConstruction extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            points: {
+                p1 : dp.point(20, 20),
+                p2 : dp.point(173, 94),
+                cp1: dp.point(50, 140),
+            },
+        };
+        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
+                                         handleCanvasUpdate={this.handleCanvasUpdate}
+                                         handlePointMove={this.handlePointMove}/>;
+    }
+
+    getPoints = () => {
+        return this.state.points;
+    };
+
+    handlePointMove = (e) => {
+        const points = this.state.points;
+        this.setState(Object.assign(points, {[e.movedPointKey]: e.movedPoint}));
+    };
+
+    handleCanvasUpdate = (ctx) => {
+        const {p1, p2, cp1} = this.state.points;
         // attach the control points
         const pp2 = dp.clone(p2);
         pp2.cp1 = cp1;
@@ -67,7 +112,8 @@ export const QuadraticConstruction = withInteractivity(function QuadraticConstru
 
         // draw the control points
         drawControlPoints(ctx, p1, pp2);
-    },
+    };
+
     renderCode({p1, p2, cp1}) {
         return (
             <pre className="demo-code">
@@ -79,26 +125,54 @@ export const QuadraticConstruction = withInteractivity(function QuadraticConstru
                 dp.drawPoints(ctx, p1, p2);{'\n'}
                 ctx.stroke();{'\n'}
             </pre>
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="demo-unit">
+                    {this.canvas}
+                    {this.renderCode(this.state.points)}
+                </div>
+            </div>
         );
     }
-});
+}
 
-export const LinearConstruction = withInteractivity(function LinearConstruction() {
-    return placeholder;
-}, {
-    state : {
-        p1: dp.point(20, 20),
-        p2: dp.point(170, 120),
-    },
-    points: ["p1", "p2"],
-    draw(ctx, {p1, p2}) {
+export class LinearConstruction extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            points: {
+                p1: dp.point(20, 20),
+                p2: dp.point(170, 120),
+            },
+        };
+        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
+                                         handleCanvasUpdate={this.handleCanvasUpdate}
+                                         handlePointMove={this.handlePointMove}/>;
+    }
+
+    getPoints = () => {
+        return this.state.points;
+    };
+
+    handlePointMove = (e) => {
+        const points = this.state.points;
+        this.setState(Object.assign(points, {[e.movedPointKey]: e.movedPoint}));
+    };
+
+    handleCanvasUpdate = (ctx) => {
+        const {p1, p2} = this.state.points;
         ctx.beginPath();
         dp.drawPoints(ctx, p1, p2);
         ctx.stroke();
 
         // draw the control points
         drawControlPoints(ctx, p1, p2);
-    },
+    };
+
     renderCode({p1, p2}) {
         return (
             <pre className="demo-code">
@@ -111,4 +185,15 @@ export const LinearConstruction = withInteractivity(function LinearConstruction(
             </pre>
         );
     }
-});
+
+    render() {
+        return (
+            <div>
+                <div className="demo-unit">
+                    {this.canvas}
+                    {this.renderCode(this.state.points)}
+                </div>
+            </div>
+        );
+    }
+}
