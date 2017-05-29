@@ -3,7 +3,7 @@
  */
 import * as dp from "drawpoint";
 
-export function drawPoint(ctx, p, offset) {
+export function drawPoint(ctx, p, offset, radius = 3) {
     offset = offset || {
             x: 0,
             y: 0
@@ -12,7 +12,7 @@ export function drawPoint(ctx, p, offset) {
     const oy = offset.y;
 
     ctx.beginPath();
-    ctx.arc(p.x + ox, p.y + oy, 3, 0, 2 * Math.PI);
+    ctx.arc(p.x + ox, p.y + oy, radius, 0, 2 * Math.PI);
     ctx.stroke();
 }
 
