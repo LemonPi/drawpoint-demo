@@ -5,6 +5,7 @@
   "dependencies": {
     "drawpoint": "^1.0.1",
     "marked": "^0.3.6",
+    "rc-slider": "^7.0.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },

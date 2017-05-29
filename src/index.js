@@ -20,6 +20,9 @@ import chainingReadme from './sections/chaining/README.md';
 import {CurveClosing} from "./sections/closing";
 import closingReadme from './sections/closing/README.md';
 
+import {GetPoint} from "./sections/get";
+import getReadme from './sections/get/README.md';
+
 ReactDOM.render(
     <div>
         <Section>
@@ -41,6 +44,12 @@ ReactDOM.render(
                 <CurveClosing/>
             </div>
             <Markdown path={closingReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <GetPoint t={0.5}/>
+            </div>
+            <Markdown path={getReadme}/>
         </Section>
     </div>,
     document.getElementById('root')
