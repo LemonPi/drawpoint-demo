@@ -23,6 +23,9 @@ import closingReadme from './sections/closing/README.md';
 import {GetPoint} from "./sections/get";
 import getReadme from './sections/get/README.md';
 
+import {SplitCurveCubic, SplitCurveQuadratic} from "./sections/split";
+import splitReadme from './sections/split/README.md';
+
 ReactDOM.render(
     <div>
         <Section>
@@ -50,6 +53,13 @@ ReactDOM.render(
                 <GetPoint t={0.5}/>
             </div>
             <Markdown path={getReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <SplitCurveQuadratic t={0.5}/>
+                <SplitCurveCubic t={0.5}/>
+            </div>
+            <Markdown path={splitReadme}/>
         </Section>
     </div>,
     document.getElementById('root')
