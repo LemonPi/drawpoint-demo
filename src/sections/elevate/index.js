@@ -4,7 +4,7 @@
 import React from 'react';
 import * as dp from "drawpoint";
 
-import {red, drawControlPoints} from "../../draw";
+import {drawPoint, grey, drawControlPoints} from "../../draw";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class ElevateQuadratic extends React.Component {
@@ -46,9 +46,10 @@ export class ElevateQuadratic extends React.Component {
 
         const cubicEndPoint = dp.elevateDegree(p1, pp2);
         drawControlPoints(ctx, p1, cubicEndPoint, {
-            pointStyle: red,
-            lineStyle : red
+            pointStyle: grey,
         });
+        drawPoint(ctx, p1);
+        drawPoint(ctx, p2);
     };
 
 
