@@ -6,6 +6,7 @@ import * as dp from "drawpoint";
 // palette
 export const red = "#ED3B3B";
 export const blue = "#08B2E3";
+export const grey = "#999";
 
 export function drawPoint(ctx, p, offset, radius = 3) {
     offset = offset || {

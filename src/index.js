@@ -29,6 +29,13 @@ import splitReadme from './sections/split/README.md';
 import {ElevateQuadratic} from "./sections/elevate";
 import elevateReadme from './sections/elevate/README.md';
 
+import {
+    SmoothContinuationCubicQuadratic,
+    SmoothContinuationQuadraticCubic
+} from "./sections/smooth_continuation";
+import smoothContinuationReadme from './sections/smooth_continuation/README.md';
+import {SmoothContinuationLinearCubic} from "./sections/smooth_continuation/index";
+
 ReactDOM.render(
     <div>
         <Section>
@@ -69,6 +76,14 @@ ReactDOM.render(
                 <ElevateQuadratic/>
             </div>
             <Markdown path={elevateReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <SmoothContinuationCubicQuadratic t={1}/>
+                <SmoothContinuationQuadraticCubic t={1}/>
+                <SmoothContinuationLinearCubic t={1}/>
+            </div>
+            <Markdown path={smoothContinuationReadme}/>
         </Section>
     </div>,
     document.getElementById('root')
