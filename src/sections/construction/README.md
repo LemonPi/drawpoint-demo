@@ -8,3 +8,6 @@ This simplifies the case where an end point is the start point of the next curve
 Linear curves have no control points, quadratic curves have either cp1 or cp2
 attached to p2, and cubic curves have both. Higher order curves aren't supported
 because the native API can't efficiently draw them.
+
+All operations apply the same way to curves of all degrees unless specified, and most of
+the time you just pass in p1 and p2 without caring about its degree.
