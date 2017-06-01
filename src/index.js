@@ -26,6 +26,9 @@ import getReadme from './sections/get/README.md';
 import {SplitCurveCubic, SplitCurveQuadratic} from "./sections/split";
 import splitReadme from './sections/split/README.md';
 
+import {ElevateQuadratic} from "./sections/elevate";
+import elevateReadme from './sections/elevate/README.md';
+
 ReactDOM.render(
     <div>
         <Section>
@@ -60,6 +63,12 @@ ReactDOM.render(
                 <SplitCurveCubic t={0.5}/>
             </div>
             <Markdown path={splitReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <ElevateQuadratic/>
+            </div>
+            <Markdown path={elevateReadme}/>
         </Section>
     </div>,
     document.getElementById('root')
