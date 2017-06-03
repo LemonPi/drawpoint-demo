@@ -79,9 +79,9 @@ ReactDOM.render(
         </Section>
         <Section>
             <div>
-                <SmoothContinuationCubicQuadratic t={1}/>
-                <SmoothContinuationQuadraticCubic t={1}/>
-                <SmoothContinuationLinearCubic t={1}/>
+                <SmoothContinuationCubicQuadratic by={1}/>
+                <SmoothContinuationQuadraticCubic by={1}/>
+                <SmoothContinuationLinearCubic by={1}/>
             </div>
             <Markdown path={smoothContinuationReadme}/>
         </Section>

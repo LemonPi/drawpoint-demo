@@ -20,9 +20,9 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
                 cp2: dp.point(80, 150),
                 p3 : dp.point(165, 165),
             },
-            t     : this.props.t,
+            by    : this.props.by,
         };
-        this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.t}
+        this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.by}
                               onChange={this.handleSliderChange}/>;
     }
 
@@ -36,8 +36,8 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
         this.setState(Object.assign(points, {[e.movedPointKey]: e.movedPoint}));
     };
 
-    handleSliderChange = (t) => {
-        this.setState({t});
+    handleSliderChange = (by) => {
+        this.setState({by});
         // force redraw of canvas
         this.refs.canvas.draw();
     };
@@ -50,7 +50,7 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
         pp2.cp2 = cp2;
 
         const pp3 = dp.clone(p3);
-        pp3.cp1 = dp.continueCurve(p1, pp2, this.state.t);
+        pp3.cp1 = dp.continueCurve(p1, pp2, this.state.by);
 
         ctx.beginPath();
         dp.drawPoints(ctx, p1, pp2, pp3);
@@ -72,7 +72,7 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
     };
 
 
-    renderCode({p1, p2, cp1, cp2, p3}, t) {
+    renderCode({p1, p2, cp1, cp2, p3}, by) {
         return (
             <pre className="demo-code">
                 const p1 = {point(p1)};{'\n'}
@@ -80,8 +80,8 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
                 p2.cp1   = {point(cp1)};{'\n'}
                 p2.cp2   = {point(cp2)};{'\n'}
                 const p3 = {point(p3)};{'\n'}
-                t        = {t};{'\n'}
-                p3.cp1   = dp.continueCurve(p1, p2, t);{'\n'}
+                by       = {by};{'\n'}
+                p3.cp1   = dp.continueCurve(p1, p2, by);{'\n'}
                 {'\n'}
                 ctx.beginPath();{'\n'}
                 dp.drawPoints(ctx, p1, p2, p3);{'\n'}
@@ -97,7 +97,7 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
                     <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
                                        handleCanvasUpdate={this.handleCanvasUpdate}
                                        handlePointMove={this.handlePointMove}/>
-                    {this.renderCode(this.state.points, this.state.t)}
+                    {this.renderCode(this.state.points, this.state.by)}
                 </div>
                 {this.slider}
             </div>
@@ -116,9 +116,9 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
                 p3 : dp.point(165, 165),
                 cp2: dp.point(80, 150),
             },
-            t     : this.props.t,
+            by    : this.props.by,
         };
-        this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.t}
+        this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.by}
                               onChange={this.handleSliderChange}/>;
     }
 
@@ -132,8 +132,8 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
         this.setState(Object.assign(points, {[e.movedPointKey]: e.movedPoint}));
     };
 
-    handleSliderChange = (t) => {
-        this.setState({t});
+    handleSliderChange = (by) => {
+        this.setState({by});
         // force redraw of canvas
         this.refs.canvas.draw();
     };
@@ -145,7 +145,7 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
         pp2.cp1 = cp1;
 
         const pp3 = dp.clone(p3);
-        pp3.cp1 = dp.continueCurve(p1, pp2, this.state.t);
+        pp3.cp1 = dp.continueCurve(p1, pp2, this.state.by);
         pp3.cp2 = cp2;
 
         ctx.beginPath();
@@ -169,15 +169,15 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
     };
 
 
-    renderCode({p1, p2, cp1, cp2, p3}, t) {
+    renderCode({p1, p2, cp1, cp2, p3}, by) {
         return (
             <pre className="demo-code">
                 const p1 = {point(p1)};{'\n'}
                 const p2 = {point(p2)};{'\n'}
                 p2.cp1   = {point(cp1)};{'\n'}
                 const p3 = {point(p3)};{'\n'}
-                t        = {t};{'\n'}
-                p3.cp1   = dp.continueCurve(p1, p2, t);{'\n'}
+                by       = {by};{'\n'}
+                p3.cp1   = dp.continueCurve(p1, p2, by);{'\n'}
                 p3.cp2   = {point(cp2)};{'\n'}
                 {'\n'}
                 ctx.beginPath();{'\n'}
@@ -194,7 +194,7 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
                     <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
                                        handleCanvasUpdate={this.handleCanvasUpdate}
                                        handlePointMove={this.handlePointMove}/>
-                    {this.renderCode(this.state.points, this.state.t)}
+                    {this.renderCode(this.state.points, this.state.by)}
                 </div>
                 {this.slider}
             </div>
@@ -211,9 +211,9 @@ export class SmoothContinuationLinearCubic extends React.Component {
                 p3 : dp.point(165, 165),
                 cp1: dp.point(80, 150),
             },
-            t     : this.props.t,
+            by    : this.props.by,
         };
-        this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.t}
+        this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.by}
                               onChange={this.handleSliderChange}/>;
     }
 
@@ -227,8 +227,8 @@ export class SmoothContinuationLinearCubic extends React.Component {
         this.setState(Object.assign(points, {[e.movedPointKey]: e.movedPoint}));
     };
 
-    handleSliderChange = (t) => {
-        this.setState({t});
+    handleSliderChange = (by) => {
+        this.setState({by});
         // force redraw of canvas
         this.refs.canvas.draw();
     };
@@ -237,7 +237,7 @@ export class SmoothContinuationLinearCubic extends React.Component {
         const {p1, p2, cp1, p3} = this.state.points;
 
         const pp3 = dp.clone(p3);
-        pp3.cp1 = dp.continueCurve(p1, p2, this.state.t);
+        pp3.cp1 = dp.continueCurve(p1, p2, this.state.by);
         pp3.cp2 = cp1;
 
         ctx.beginPath();
@@ -261,14 +261,14 @@ export class SmoothContinuationLinearCubic extends React.Component {
     };
 
 
-    renderCode({p1, p2, p3, cp1}, t) {
+    renderCode({p1, p2, p3, cp1}, by) {
         return (
             <pre className="demo-code">
                 const p1 = {point(p1)};{'\n'}
                 const p2 = {point(p2)};{'\n'}
                 const p3 = {point(p3)};{'\n'}
-                t        = {t};{'\n'}
-                p3.cp1   = dp.continueCurve(p1, p2, t);{'\n'}
+                by       = {by};{'\n'}
+                p3.cp1   = dp.continueCurve(p1, p2, by);{'\n'}
                 p3.cp2   = {point(cp1)};{'\n'}
                 {'\n'}
                 ctx.beginPath();{'\n'}
@@ -285,7 +285,7 @@ export class SmoothContinuationLinearCubic extends React.Component {
                     <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
                                        handleCanvasUpdate={this.handleCanvasUpdate}
                                        handlePointMove={this.handlePointMove}/>
-                    {this.renderCode(this.state.points, this.state.t)}
+                    {this.renderCode(this.state.points, this.state.by)}
                 </div>
                 {this.slider}
             </div>
