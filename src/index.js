@@ -65,6 +65,14 @@ ReactDOM.render(
         </Section>
         <Section>
             <div>
+                <SmoothContinuationCubicQuadratic by={1}/>
+                <SmoothContinuationQuadraticCubic by={1}/>
+                <SmoothContinuationLinearCubic by={1}/>
+            </div>
+            <Markdown path={smoothContinuationReadme}/>
+        </Section>
+        <Section>
+            <div>
                 <GetPoint t={0.5}/>
             </div>
             <Markdown path={getReadme}/>
@@ -81,14 +89,6 @@ ReactDOM.render(
                 <ElevateQuadratic/>
             </div>
             <Markdown path={elevateReadme}/>
-        </Section>
-        <Section>
-            <div>
-                <SmoothContinuationCubicQuadratic by={1}/>
-                <SmoothContinuationQuadraticCubic by={1}/>
-                <SmoothContinuationLinearCubic by={1}/>
-            </div>
-            <Markdown path={smoothContinuationReadme}/>
         </Section>
     </div>,
     document.getElementById('root')
