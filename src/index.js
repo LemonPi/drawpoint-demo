@@ -38,6 +38,9 @@ import {
 import smoothContinuationReadme from './sections/smooth_continuation/README.md';
 import {SmoothContinuationLinearCubic} from "./sections/smooth_continuation/index";
 
+import {ScalePoints} from "./sections/scale";
+import scaleReadme from "./sections/scale/README.md";
+
 ReactDOM.render(
     <div>
         <Section>
@@ -73,17 +76,24 @@ ReactDOM.render(
         </Section>
         <Section>
             <div>
-                <GetPoint t={0.5}/>
-            </div>
-            <Markdown path={getReadme}/>
-        </Section>
-        <Section>
-            <div>
                 <SplitCurveQuadratic t={0.5}/>
                 <SplitCurveCubic t={0.5}/>
             </div>
             <Markdown path={splitReadme}/>
         </Section>
+        <Section>
+            <div>
+                <ScalePoints by={1}/>
+            </div>
+            <Markdown path={scaleReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <GetPoint t={0.5}/>
+            </div>
+            <Markdown path={getReadme}/>
+        </Section>
+
         <Section>
             <div>
                 <ElevateQuadratic/>
