@@ -47,6 +47,9 @@ import rotateReadme from "./sections/rotate/README.md";
 import {InterpolateX, InterpolateY} from "./sections/interpolate";
 import interpolateReadme from "./sections/interpolate/README.md";
 
+import {TransformCurveCubicQuadratic, TransformCurveCubicLinear} from "./sections/transform";
+import transformReadme from "./sections/transform/README.md";
+
 ReactDOM.render(
     <div>
         <Section>
@@ -111,6 +114,13 @@ ReactDOM.render(
                 <InterpolateY y={100}/>
             </div>
             <Markdown path={interpolateReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <TransformCurveCubicQuadratic by={0.5}/>
+                <TransformCurveCubicLinear by={0.5}/>
+            </div>
+            <Markdown path={transformReadme}/>
         </Section>
         <Section>
             <div>
