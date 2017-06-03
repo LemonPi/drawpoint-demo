@@ -9,6 +9,28 @@ ol, ul {
     padding-left: 30px;
 }
 
+a {
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+
+a:link {
+    color: #08B2E3;
+}
+
+a:visited {
+    color: #9952c5;
+}
+
+a:focus, a:hover {
+    border-bottom: 1px solid;
+}
+
+a:active {
+    color: #ED3B3B;
+}
+
 .demo-section {
     padding: 5px;
     display: flex;

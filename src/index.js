@@ -7,6 +7,8 @@ import './index.css';
 import Markdown from "./Markdown";
 import Section from "./Section";
 
+import topReadme from "./README.md";
+
 import {
     CubicConstruction,
     QuadraticConstruction,
@@ -38,6 +40,9 @@ import {SmoothContinuationLinearCubic} from "./sections/smooth_continuation/inde
 
 ReactDOM.render(
     <div>
+        <Section>
+            <Markdown path={topReadme}/>
+        </Section>
         <Section>
             <div>
                 <LinearConstruction/>
