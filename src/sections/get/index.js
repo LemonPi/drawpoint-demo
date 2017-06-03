@@ -6,7 +6,7 @@ import * as dp from "drawpoint";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import {drawPoint, drawControlPoints} from "../../draw";
+import {grey, drawPoint, drawControlPoints} from "../../draw";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class GetPoint extends React.Component {
@@ -57,10 +57,12 @@ export class GetPoint extends React.Component {
 
         const p = dp.getPointOnCurve(this.state.t, p1, pp2);
 
-        ctx.save();
-        ctx.strokeStyle = "red";
-        drawPoint(ctx, p, null, 5);
-        ctx.restore();
+        drawPoint(ctx,
+            p,
+            {
+                pointStyle: grey,
+                radius: 5
+            });
     };
 
 

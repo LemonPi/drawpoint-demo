@@ -6,7 +6,7 @@ import * as dp from "drawpoint";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import {drawPoint, red, blue, drawControlPoints} from "../../draw";
+import {drawPoint, grey, red, blue, drawControlPoints} from "../../draw";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class SplitCurveQuadratic extends React.Component {
@@ -71,7 +71,7 @@ export class SplitCurveQuadratic extends React.Component {
                 lineStyle : blue
             });
 
-        drawPoint(ctx, sp.left.p2);
+        drawPoint(ctx, sp.left.p2, {pointStyle: grey});
     };
 
 
@@ -172,7 +172,7 @@ export class SplitCurveCubic extends React.Component {
                 lineStyle : blue
             });
 
-        drawPoint(ctx, sp.left.p2);
+        drawPoint(ctx, sp.left.p2, {pointStyle: grey});
     };
 
 
