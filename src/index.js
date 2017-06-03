@@ -44,6 +44,9 @@ import scaleReadme from "./sections/scale/README.md";
 import {RotatePoints} from "./sections/rotate";
 import rotateReadme from "./sections/rotate/README.md";
 
+import {InterpolateX, InterpolateY} from "./sections/interpolate";
+import interpolateReadme from "./sections/interpolate/README.md";
+
 ReactDOM.render(
     <div>
         <Section>
@@ -102,7 +105,13 @@ ReactDOM.render(
             </div>
             <Markdown path={getReadme}/>
         </Section>
-
+        <Section>
+            <div>
+                <InterpolateX x={100}/>
+                <InterpolateY y={100}/>
+            </div>
+            <Markdown path={interpolateReadme}/>
+        </Section>
         <Section>
             <div>
                 <ElevateQuadratic/>
