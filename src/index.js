@@ -41,6 +41,9 @@ import {SmoothContinuationLinearCubic} from "./sections/smooth_continuation/inde
 import {ScalePoints} from "./sections/scale";
 import scaleReadme from "./sections/scale/README.md";
 
+import {RotatePoints} from "./sections/rotate";
+import rotateReadme from "./sections/rotate/README.md";
+
 ReactDOM.render(
     <div>
         <Section>
@@ -86,6 +89,12 @@ ReactDOM.render(
                 <ScalePoints by={1}/>
             </div>
             <Markdown path={scaleReadme}/>
+        </Section>
+        <Section>
+            <div>
+                <RotatePoints rad={1}/>
+            </div>
+            <Markdown path={rotateReadme}/>
         </Section>
         <Section>
             <div>
