@@ -17,9 +17,6 @@ export class ElevateQuadratic extends React.Component {
                 cp1: dp.point(85, 162),
             },
         };
-        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
     }
 
     getPoints = () => {
@@ -72,7 +69,9 @@ export class ElevateQuadratic extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points)}
                 </div>
             </div>

@@ -21,9 +21,6 @@ export class GetPoint extends React.Component {
             },
             t     : this.props.t,
         };
-        this.canvas = <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
         this.slider = <Slider min={0} max={1} step={0.01} defaultValue={this.state.t}
                               onChange={this.handleSliderChange}/>;
     }
@@ -88,7 +85,9 @@ export class GetPoint extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points, this.state.t)}
                 </div>
                 {this.slider}

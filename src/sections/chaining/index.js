@@ -20,9 +20,6 @@ export class CurveChaining extends React.Component {
                 cp3: dp.point(65, 175),
             },
         };
-        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
     }
 
     getPoints = () => {
@@ -75,7 +72,9 @@ export class CurveChaining extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points)}
                 </div>
             </div>

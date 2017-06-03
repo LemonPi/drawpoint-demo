@@ -20,9 +20,6 @@ export class SplitCurveQuadratic extends React.Component {
             },
             t     : this.props.t,
         };
-        this.canvas = <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
         this.slider = <Slider min={0} max={1} step={0.01} defaultValue={this.state.t}
                               onChange={this.handleSliderChange}/>;
     }
@@ -57,7 +54,6 @@ export class SplitCurveQuadratic extends React.Component {
         drawControlPoints(ctx, p1, pp2);
 
         const sp = dp.splitCurve(this.state.t, p1, pp2);
-        console.log(sp);
 
         // draw control points for the curves left and right sides after splitting
         drawControlPoints(ctx,
@@ -100,7 +96,9 @@ export class SplitCurveQuadratic extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points, this.state.t)}
                 </div>
                 {this.slider}
@@ -122,9 +120,6 @@ export class SplitCurveCubic extends React.Component {
             },
             t     : this.props.t,
         };
-        this.canvas = <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
         this.slider = <Slider min={0} max={1} step={0.01} defaultValue={this.state.t}
                               onChange={this.handleSliderChange}/>;
     }
@@ -160,7 +155,6 @@ export class SplitCurveCubic extends React.Component {
         drawControlPoints(ctx, p1, pp2);
 
         const sp = dp.splitCurve(this.state.t, p1, pp2);
-        console.log(sp);
 
         // draw control points for the curves left and right sides after splitting
         drawControlPoints(ctx,
@@ -204,7 +198,9 @@ export class SplitCurveCubic extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points, this.state.t)}
                 </div>
                 {this.slider}

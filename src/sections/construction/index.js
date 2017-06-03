@@ -19,9 +19,6 @@ export class CubicConstruction extends React.Component {
                 cp2: dp.point(90, 40),
             },
         };
-        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
     }
 
     getPoints = () => {
@@ -67,7 +64,9 @@ export class CubicConstruction extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points)}
                 </div>
             </div>
@@ -86,9 +85,6 @@ export class QuadraticConstruction extends React.Component {
                 cp1: dp.point(50, 140),
             },
         };
-        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
     }
 
     getPoints = () => {
@@ -132,7 +128,9 @@ export class QuadraticConstruction extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points)}
                 </div>
             </div>
@@ -149,9 +147,6 @@ export class LinearConstruction extends React.Component {
                 p2: dp.point(170, 120),
             },
         };
-        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
     }
 
     getPoints = () => {
@@ -190,7 +185,9 @@ export class LinearConstruction extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points)}
                 </div>
             </div>

@@ -22,9 +22,6 @@ export class CurveClosing extends React.Component {
                 cp4: dp.point(170, 20),
             },
         };
-        this.canvas = <InteractiveCanvas getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
     }
 
     getPoints = () => {
@@ -87,7 +84,9 @@ export class CurveClosing extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points)}
                 </div>
             </div>

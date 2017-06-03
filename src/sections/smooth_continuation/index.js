@@ -22,9 +22,6 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
             },
             t     : this.props.t,
         };
-        this.canvas = <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
         this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.t}
                               onChange={this.handleSliderChange}/>;
     }
@@ -97,7 +94,9 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points, this.state.t)}
                 </div>
                 {this.slider}
@@ -119,9 +118,6 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
             },
             t     : this.props.t,
         };
-        this.canvas = <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
         this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.t}
                               onChange={this.handleSliderChange}/>;
     }
@@ -195,7 +191,9 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points, this.state.t)}
                 </div>
                 {this.slider}
@@ -215,9 +213,6 @@ export class SmoothContinuationLinearCubic extends React.Component {
             },
             t     : this.props.t,
         };
-        this.canvas = <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
-                                         handleCanvasUpdate={this.handleCanvasUpdate}
-                                         handlePointMove={this.handlePointMove}/>;
         this.slider = <Slider min={0} max={3} step={0.01} defaultValue={this.state.t}
                               onChange={this.handleSliderChange}/>;
     }
@@ -287,7 +282,9 @@ export class SmoothContinuationLinearCubic extends React.Component {
         return (
             <div>
                 <div className="demo-unit">
-                    {this.canvas}
+                    <InteractiveCanvas ref="canvas" getPoints={this.getPoints}
+                                       handleCanvasUpdate={this.handleCanvasUpdate}
+                                       handlePointMove={this.handlePointMove}/>
                     {this.renderCode(this.state.points, this.state.t)}
                 </div>
                 {this.slider}
