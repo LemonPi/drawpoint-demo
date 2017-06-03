@@ -4,7 +4,7 @@
 import React from 'react';
 import * as dp from "drawpoint";
 
-import {drawControlPoints} from "../../draw";
+import {renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 
@@ -42,7 +42,7 @@ export class CubicConstruction extends React.Component {
         ctx.stroke();
 
         // draw the control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
     };
 
     renderCode({p1, p2, cp1, cp2}) {
@@ -107,7 +107,7 @@ export class QuadraticConstruction extends React.Component {
         ctx.stroke();
 
         // draw the control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
     };
 
     renderCode({p1, p2, cp1}) {
@@ -165,7 +165,7 @@ export class LinearConstruction extends React.Component {
         ctx.stroke();
 
         // draw the control points
-        drawControlPoints(ctx, p1, p2);
+        renderControlPoints(ctx, p1, p2);
     };
 
     renderCode({p1, p2}) {

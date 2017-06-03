@@ -4,7 +4,7 @@
 import React from 'react';
 import * as dp from "drawpoint";
 
-import {drawControlPoints} from "../../draw";
+import {renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class CurveChaining extends React.Component {
@@ -46,8 +46,8 @@ export class CurveChaining extends React.Component {
         ctx.stroke();
 
         // draw the control points
-        drawControlPoints(ctx, p1, pp2);
-        drawControlPoints(ctx, pp2, pp3);
+        renderControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, pp2, pp3);
     };
 
 

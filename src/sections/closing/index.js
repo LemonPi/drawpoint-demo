@@ -4,7 +4,7 @@
 import React from 'react';
 import * as dp from "drawpoint";
 
-import {drawControlPoints} from "../../draw";
+import {renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 
@@ -54,9 +54,9 @@ export class CurveClosing extends React.Component {
         ctx.stroke();
 
         // draw the control points
-        drawControlPoints(ctx, p1, pp2);
-        drawControlPoints(ctx, pp2, pp3);
-        drawControlPoints(ctx, pp3, pp1);
+        renderControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, pp2, pp3);
+        renderControlPoints(ctx, pp3, pp1);
     };
 
 

@@ -6,7 +6,7 @@ import * as dp from "drawpoint";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import {drawPoint, grey, red, blue, drawControlPoints} from "../../draw";
+import {renderPoint, grey, red, blue, renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class SplitCurveQuadratic extends React.Component {
@@ -51,19 +51,19 @@ export class SplitCurveQuadratic extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
 
         const sp = dp.splitCurve(this.state.t, p1, pp2);
 
         // draw control points for the curves left and right sides after splitting
-        drawControlPoints(ctx,
+        renderControlPoints(ctx,
             sp.left.p1,
             sp.left.p2,
             {
                 pointStyle: red,
                 lineStyle : red
             });
-        drawControlPoints(ctx,
+        renderControlPoints(ctx,
             sp.right.p1,
             sp.right.p2,
             {
@@ -71,7 +71,7 @@ export class SplitCurveQuadratic extends React.Component {
                 lineStyle : blue
             });
 
-        drawPoint(ctx, sp.left.p2, {pointStyle: grey});
+        renderPoint(ctx, sp.left.p2, {pointStyle: grey});
     };
 
 
@@ -152,19 +152,19 @@ export class SplitCurveCubic extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
 
         const sp = dp.splitCurve(this.state.t, p1, pp2);
 
         // draw control points for the curves left and right sides after splitting
-        drawControlPoints(ctx,
+        renderControlPoints(ctx,
             sp.left.p1,
             sp.left.p2,
             {
                 pointStyle: red,
                 lineStyle : red
             });
-        drawControlPoints(ctx,
+        renderControlPoints(ctx,
             sp.right.p1,
             sp.right.p2,
             {
@@ -172,7 +172,7 @@ export class SplitCurveCubic extends React.Component {
                 lineStyle : blue
             });
 
-        drawPoint(ctx, sp.left.p2, {pointStyle: grey});
+        renderPoint(ctx, sp.left.p2, {pointStyle: grey});
     };
 
 

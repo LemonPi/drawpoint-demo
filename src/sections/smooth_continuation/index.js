@@ -6,7 +6,7 @@ import * as dp from "drawpoint";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import {drawPoint, grey, drawControlPoints} from "../../draw";
+import {renderPoint, grey, renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class SmoothContinuationCubicQuadratic extends React.Component {
@@ -57,18 +57,18 @@ export class SmoothContinuationCubicQuadratic extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
 
         // draw control points for the curves left and right sides after splitting
-        drawControlPoints(ctx,
+        renderControlPoints(ctx,
             pp2,
             pp3,
             {
                 pointStyle: grey,
             });
 
-        drawPoint(ctx, pp2);
-        drawPoint(ctx, pp3);
+        renderPoint(ctx, pp2);
+        renderPoint(ctx, pp3);
     };
 
 
@@ -153,19 +153,19 @@ export class SmoothContinuationQuadraticCubic extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
 
         // draw control points for the curves left and right sides after splitting
-        drawControlPoints(ctx,
+        renderControlPoints(ctx,
             pp2,
             pp3,
             {
                 pointStyle: grey,
             });
 
-        drawPoint(ctx, pp2);
-        drawPoint(ctx, pp3);
-        drawPoint(ctx, cp2);
+        renderPoint(ctx, pp2);
+        renderPoint(ctx, pp3);
+        renderPoint(ctx, cp2);
     };
 
 
@@ -245,19 +245,19 @@ export class SmoothContinuationLinearCubic extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, p2);
+        renderControlPoints(ctx, p1, p2);
 
         // draw control points for the curves left and right sides after splitting
-        drawControlPoints(ctx,
+        renderControlPoints(ctx,
             p2,
             pp3,
             {
                 pointStyle: grey,
             });
 
-        drawPoint(ctx, p2);
-        drawPoint(ctx, pp3);
-        drawPoint(ctx, cp1);
+        renderPoint(ctx, p2);
+        renderPoint(ctx, pp3);
+        renderPoint(ctx, cp1);
     };
 
 

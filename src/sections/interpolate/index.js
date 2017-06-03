@@ -6,7 +6,7 @@ import * as dp from "drawpoint";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import {drawPoint, grey, drawControlPoints} from "../../draw";
+import {renderPoint, grey, renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class InterpolateX extends React.Component {
@@ -55,7 +55,7 @@ export class InterpolateX extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
 
         // draw the interpolation line
         const top = dp.point(this.state.x, 0);
@@ -72,7 +72,7 @@ export class InterpolateX extends React.Component {
         const toFind = dp.point(this.state.x, null);
         const pts = dp.interpolateCurve(p1, pp2, toFind);
         pts.forEach((pt) => {
-            drawPoint(ctx, pt, {
+            renderPoint(ctx, pt, {
                 pointStyle: grey,
             });
         });
@@ -160,7 +160,7 @@ export class InterpolateY extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
 
         // draw the interpolation line
         const left = dp.point(0, this.state.y);
@@ -177,7 +177,7 @@ export class InterpolateY extends React.Component {
         const toFind = dp.point(null, this.state.y);
         const pts = dp.interpolateCurve(p1, pp2, toFind);
         pts.forEach((pt) => {
-            drawPoint(ctx, pt, {
+            renderPoint(ctx, pt, {
                 pointStyle: grey,
             });
         });

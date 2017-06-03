@@ -6,7 +6,7 @@ import * as dp from "drawpoint";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import {grey, drawControlPoints} from "../../draw";
+import {grey, renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class TransformCurveCubicQuadratic extends React.Component {
@@ -72,9 +72,9 @@ export class TransformCurveCubicQuadratic extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
-        drawControlPoints(ctx, p1, pp3);
-        drawControlPoints(ctx, p1, p4, {pointStyle: grey});
+        renderControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp3);
+        renderControlPoints(ctx, p1, p4, {pointStyle: grey});
     };
 
 
@@ -176,9 +176,9 @@ export class TransformCurveCubicLinear extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
-        drawControlPoints(ctx, p1, pp3);
-        drawControlPoints(ctx, p1, p4, {pointStyle: grey});
+        renderControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp3);
+        renderControlPoints(ctx, p1, p4, {pointStyle: grey});
     };
 
 

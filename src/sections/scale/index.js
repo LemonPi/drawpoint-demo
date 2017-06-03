@@ -6,7 +6,7 @@ import * as dp from "drawpoint";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import {drawPoint, grey, drawControlPoints} from "../../draw";
+import {renderPoint, grey, renderControlPoints} from "../../render";
 import {point, InteractiveCanvas} from "../../utils";
 
 export class ScalePoints extends React.Component {
@@ -72,9 +72,9 @@ export class ScalePoints extends React.Component {
         ctx.stroke();
 
         // draw the overall control points
-        drawControlPoints(ctx, p1, pp2);
+        renderControlPoints(ctx, p1, pp2);
 
-        drawPoint(ctx, this.state.referencePt, {
+        renderPoint(ctx, this.state.referencePt, {
             pointStyle: grey,
         });
     };
