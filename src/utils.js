@@ -5,7 +5,9 @@ import React from 'react';
 import * as dp from "drawpoint";
 
 export function point(p) {
-    return `dp.point(${dp.roundToDec(p.x)}, ${dp.roundToDec(p.y)})`;
+    const x = (typeof p.x === "number") ? dp.roundToDec(p.x) : null;
+    const y = (typeof p.y === "number") ? dp.roundToDec(p.y) : null;
+    return `dp.point(${x}, ${y})`;
 }
 
 export function getMousePoint(e) {
