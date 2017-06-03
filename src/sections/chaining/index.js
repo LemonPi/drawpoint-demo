@@ -13,9 +13,9 @@ export class CurveChaining extends React.Component {
         this.state = {
             points: {
                 p1 : dp.point(20, 20),
-                p2 : dp.point(41, 110),
-                cp1: dp.point(50, 50),
-                cp2: dp.point(90, 40),
+                p2 : dp.point(67, 108),
+                cp1: dp.point(60, 26),
+                cp2: dp.point(74, 44),
                 p3 : dp.point(190, 100),
                 cp3: dp.point(65, 175),
             },

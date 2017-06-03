@@ -13,10 +13,10 @@ export class CubicConstruction extends React.Component {
         super(props);
         this.state = {
             points: {
-                p1 : dp.point(20, 20),
-                p2 : dp.point(170, 120),
-                cp1: dp.point(50, 50),
-                cp2: dp.point(90, 40),
+                p1 : dp.point(132, 20),
+                p2 : dp.point(60, 170),
+                cp1: dp.point(36, 68),
+                cp2: dp.point(164, 126),
             },
         };
     }

@@ -13,13 +13,13 @@ export class CurveClosing extends React.Component {
         super(props);
         this.state = {
             points: {
-                p1 : dp.point(20, 20),
-                p2 : dp.point(34, 160),
-                cp1: dp.point(50, 50),
-                cp2: dp.point(13, 140),
-                p3 : dp.point(160, 135),
-                cp3: dp.point(60, 180),
-                cp4: dp.point(170, 20),
+                p1 : dp.point(56, 42),
+                p2 : dp.point(46, 154),
+                cp1: dp.point(96, 118),
+                cp2: dp.point(3, 134),
+                p3 : dp.point(148, 127),
+                cp3: dp.point(134, 188),
+                cp4: dp.point(164, 26),
             },
         };
     }
