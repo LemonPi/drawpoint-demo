@@ -5,6 +5,10 @@ body {
     color: #484848;
 }
 
+canvas {
+    touch-action: none;
+}
+
 ol, ul {
     padding-left: 30px;
 }

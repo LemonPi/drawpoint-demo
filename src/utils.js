@@ -31,12 +31,12 @@ function interactiveFactory(getPoints, canvas, handlePointMove) {
     let moving = false;
 
     return {
-        handleMouseDown (e)  {
+        handleMouseDown (e, ignore, touchablePixelsAroundPoints = 10)  {
             mousePoint = getMousePoint(e);
             const points = getPoints();
 
             Object.keys(points).forEach((p) => {
-                if (dp.norm(dp.diff(points[p], mousePoint)) < 10) {
+                if (dp.norm(dp.diff(points[p], mousePoint)) < touchablePixelsAroundPoints) {
                     moving = true;
                     movingPoint = p;
                 }
@@ -55,6 +55,7 @@ function interactiveFactory(getPoints, canvas, handlePointMove) {
         },
 
         handleMouseMove  (e)  {
+            // console.log(touchablePixelsAroundPoints);
             const newMousePoint = getMousePoint(e);
             const points = getPoints();
 
@@ -136,12 +137,28 @@ export class InteractiveCanvas extends React.Component {
         this.draw();
     }
 
+    // touch event handlers
+    handleTouchStart = (e) => {
+        // only use the first touch so essentially ignore multiple touches
+        // since touch screens are clumsier, allow more tolerance around points to be clickable
+        this.handler.handleMouseDown(e.touches[0], null, 40);
+    };
+    handleTouchMove = (e) => {
+        this.handler.handleMouseMove(e.touches[0]);
+    };
+    handleTouchEnd = (e) => {
+        this.handler.handleMouseUp(e.touches[0]);
+    };
+
     render() {
         return (
             <canvas width={this.width} height={this.height} ref="canvas"
                     onMouseDown={this.handler.handleMouseDown}
                     onMouseUp={this.handler.handleMouseUp}
                     onMouseMove={this.handler.handleMouseMove}
+                    onTouchStart={this.handleTouchStart}
+                    onTouchMove={this.handleTouchMove}
+                    onTouchEnd={this.handleTouchEnd}
                     className="demo-canvas"></canvas>
         );
     }
