@@ -73,6 +73,10 @@ a:active {
 }
 
 @media (max-width: 880px) {
+    .markdown {
+        margin: 5px;
+    }
+
     .demo-section {
         flex-direction: column-reverse;
     }
