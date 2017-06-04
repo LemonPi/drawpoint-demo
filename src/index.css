@@ -63,10 +63,21 @@ a:active {
 .markdown {
     margin-left: 20px;
     width: 800px;
+    max-width: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
 }
 
 .markdown > p {
     line-height: 1.4em;
+}
+
+@media (max-width: 880px) {
+    .demo-section {
+        flex-direction: column-reverse;
+    }
+
+    .demo-unit {
+        overflow-x: auto;
+    }
 }
