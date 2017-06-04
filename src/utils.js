@@ -139,6 +139,8 @@ export class InteractiveCanvas extends React.Component {
 
     // touch event handlers
     handleTouchStart = (e) => {
+        // prevent panning and zooming on browsers where touch-action:none isn't enough (mobile safari)
+        e.preventDefault();
         // only use the first touch so essentially ignore multiple touches
         // since touch screens are clumsier, allow more tolerance around points to be clickable
         this.handler.handleMouseDown(e.touches[0], null, 40);
