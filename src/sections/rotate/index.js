@@ -85,7 +85,7 @@ export class RotatePoints extends React.Component {
         const pointCopies = dp.clone(points);
         dp.rotatePoints(this.state.referencePt,
             -rad,
-            ...Object.values(pointCopies));
+            ...Object.keys(pointCopies).map(key => pointCopies[key]));
         const {p1, p2, cp1, cp2} = pointCopies;
 
         return (
