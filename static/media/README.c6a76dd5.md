@@ -11,3 +11,6 @@ because the native API can't efficiently draw them.
 
 All operations apply the same way to curves of all degrees unless specified, and most of
 the time you just pass in p1 and p2 without caring about its degree.
+
+After construction a point's dimensions can be directly accessed and modified through
+`p1.x` and `p1.y`. 
