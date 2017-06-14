@@ -4,9 +4,27 @@
 import React from 'react';
 import * as dp from "drawpoint";
 
+/**
+ * Right-pad a string (replace characters of pad with str)
+ * ex. pad = "    ", str = 123 returns "123 "
+ * Input is truncated to the length of pad.
+ * From https://stackoverflow.com/a/24398129/3368722
+ * @param pad The base string that should be left if str doesn't override them
+ * @param str The overriding string
+ * @returns {*} The padded string
+ */
+function rightPad(pad, str) {
+    if (typeof str === 'undefined') {
+        return pad;
+    }
+    return (str + pad).substring(0, pad.length);
+}
+
 export function point(p) {
-    const x = (typeof p.x === "number") ? dp.roundToDec(p.x) : null;
-    const y = (typeof p.y === "number") ? dp.roundToDec(p.y) : null;
+    // we pad it so jumping from 1 to 10 won't cause stretching
+    // and we'll get nice alignment
+    const x = (typeof p.x === "number") ? rightPad("   ", dp.roundToDec(p.x)) : null;
+    const y = (typeof p.y === "number") ? rightPad("   ", dp.roundToDec(p.y)) : null;
     return `dp.point(${x}, ${y})`;
 }
 
