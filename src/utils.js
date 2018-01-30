@@ -49,7 +49,7 @@ function interactiveFactory(getPoints, canvas, handlePointMove) {
     let moving = false;
 
     return {
-        handleMouseDown (e, ignore, touchablePixelsAroundPoints = 10)  {
+        handleMouseDown(e, ignore, touchablePixelsAroundPoints = 10) {
             mousePoint = getMousePoint(e);
             const points = getPoints();
 
@@ -61,7 +61,7 @@ function interactiveFactory(getPoints, canvas, handlePointMove) {
             });
         },
 
-        handleMouseUp  ()  {
+        handleMouseUp() {
             if (moving === false) {
                 return;
             }
@@ -72,7 +72,7 @@ function interactiveFactory(getPoints, canvas, handlePointMove) {
             movingPoint = null;
         },
 
-        handleMouseMove  (e)  {
+        handleMouseMove(e) {
             // console.log(touchablePixelsAroundPoints);
             const newMousePoint = getMousePoint(e);
             const points = getPoints();
